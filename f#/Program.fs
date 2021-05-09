@@ -37,4 +37,27 @@ let main _ =
     | Ok value -> printfn "%s" value
     | Error err -> printfn "Error: %s" err
 
+    while true do
+        Async.Sleep 100 |> Async.RunSynchronously
+        let mutable text = ""
+
+        while Console.KeyAvailable do
+            let value =
+                Console.ReadKey true
+                |> (fun c -> c.Key.ToString ())
+                // |> printfn "%A"
+
+            text <- text + value
+
+        printfn "%A" text
+
+
+    while not Console.KeyAvailable do
+        Async.Sleep 10000
+        |> ignore
+    
+    Console.ReadKey ()
+    |> (fun c -> c.Key)
+    |> printfn "%A"
+
     0
