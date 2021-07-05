@@ -11,7 +11,7 @@ void setup() {
 
 void loop() {
     buttonState = digitalRead(buttonPin);
-    Serial.println(buttonState);
+    Serial.write(buttonState);
     delay(100); // Wait 100 milliseconds
     
     /*
